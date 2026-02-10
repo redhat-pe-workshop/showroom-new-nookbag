@@ -13,8 +13,7 @@ https://npmjs.com/package/@backstage/plugin-catalog-backend-module-gitlab/v/0.3.
 
 To install and configure this plugin:
 
-. Visit the https://gitlab-gitlab.{openshift_cluster_ingress_domain}/rhdh/developer-hub-config/-/blob/main/values.yaml[rhdh/developer-hub-config repository^, window="gitlab"] in your GitLab instance.
-. Select *Edit > Edit single file*.
+include::../../partials/gitops-config-workflow.adoc[tag=edit-values]
 . Uncomment the `--- TECHDOCS_PLUGIN ---` section in `dynamic.plugins` section of the YAML, to enable the TechDocs and GitLab dynamic plugins.
 +
 [NOTE]

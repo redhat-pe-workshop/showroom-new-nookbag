@@ -21,13 +21,7 @@ image:m7/orchestrator-architecture-container-diagram.jpg[]
 
 As a use case for Developer Self-Service we are going to look at a pretty simple use case: a Developer can request a namespace on an OpenShift cluster. The namespace has limited resources, defined by resource quota and limit ranges. In our case, the namespaces come in two sizes, small and large. Large namespaces however require an approval. 
 
-IMPORTANT: Please make sure to log in as a *Platform Engineer* with `pe1` / `{common_password}`. Refer to the below guide for assistance.
-
-.Click to learn how to login as a Platform Engineer
-[%collapsible]
-====
-include::../login-pe.adoc[]
-====
+include::../../partials/login-pe-full.adoc[]
 
 === Configure the Orchestrator Plugin
 

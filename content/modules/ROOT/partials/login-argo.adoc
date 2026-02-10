@@ -1,0 +1,4 @@
+// Reusable partial for Argo CD admin login reminder
+// Usage: include::../partials/login-argo.adoc[]
++
+If needed, login using `admin` / `{openshift_gitops_password}`.

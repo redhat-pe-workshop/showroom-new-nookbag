@@ -89,11 +89,7 @@ These pipeline definitions are located in the https://gitlab-gitlab.{openshift_c
 
 NOTE: Changing the build manifests for the Parasol Store Build is a Platform Engineering activity. Therefore, make sure you are logged in as `pe1` or `pe2`. If needed, open the section below for help.
 
-.Click to learn how to login as a Platform Engineer
-[%collapsible]
-====
-include::../login-pe.adoc[]
-====
+include::../../partials/login-pe-full.adoc[]
 
 So, before we (our developer-self) create a merge request for our `parasol-store` branch (`new-feature-with-signed-commits`), let's augment the pre- and post-merge pipelines with security guardrails:
 

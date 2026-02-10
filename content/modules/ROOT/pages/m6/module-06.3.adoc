@@ -416,11 +416,7 @@ As mentioned above, the pipeline is provisioned by the "*Parasol Store Developme
 
 IMPORTANT: For the next steps (a PE Activity) please make sure to log in as a *Platform Engineer* with `pe1` / `{common_password}`. Refer to the below guide for assistance.
 
-.Click to learn how to login as a Platform Engineer
-[%collapsible]
-====
-include::../login-pe.adoc[]
-====
+include::../../partials/login-pe-full.adoc[]
 
 NOTE: As noted earlier in the workshop, we are using Tekton (OpenShift Pipelines) here - but that is just an implementation detail. You can use your CI of choice and adapt what we do here. 
 
@@ -450,11 +446,7 @@ NOTE: For details what we're doing and why - go back to xref:m4/module-04.5.adoc
 
 IMPORTANT: Creating a new developer environment is a Developer activity, so please login as dev1 (see expandable section below)
 
-.Click to learn how to login as a Developer
-[%collapsible]
-====
-include::../login-developer.adoc[]
-====
+include::../../partials/login-dev-full.adoc[]
 
 1) Go to the "Self-service" section of {product_name_rhdh} https://backstage-backstage.{openshift_cluster_ingress_domain}/create[here^, window="rhdh"] - or click the *(+)* icon in the {product_name_rhdh} top navigation header.
 

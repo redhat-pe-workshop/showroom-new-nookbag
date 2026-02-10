@@ -7,13 +7,7 @@ include::../style.adoc[]
 
 As mentioned in the previous section, the Platform Engineering team created two Templates for importing existing applications/services (Components), and APIs into {product_name_rhdh}. While it is possible to use the same template to import both of them, there are some key differences in the data that must be gathered for API and Component Entities. 
 
-IMPORTANT: Please make sure to log in as a *Platform Engineer* with `pe1` / `{common_password}`. Refer to the below guide for assistance.
-
-.Click to learn how to login as a Platform Engineer
-[%collapsible]
-====
-include::../login-pe.adoc[]
-====
+include::../../partials/login-pe-full.adoc[]
 
 
 == Register the Import API and Component Templates
@@ -39,8 +33,7 @@ The *import-existing-app* template does the following:
 
 === Add Templates to Catalog Configuration
 
-. Visit your https://gitlab-gitlab.{openshift_cluster_ingress_domain}/rhdh/developer-hub-config/-/edit/main/values.yaml[rhdh/developer-hub-config repository on GitLab^, window="gitlab"]. If prompted, login with `pe1` / `{common_password}`.
-. You should already be in Edit mode of the `values.yaml` file if you clicked the link above.
+include::../../partials/gitops-config-workflow.adoc[tag=edit-values]
 . Locate the `catalog:` section and find the `locations:` array. 
 . Add the following two new entries to the `locations:` array to import both Software Templates:
 +
@@ -77,8 +70,7 @@ The new templates require plugins to function, and ensure the newly created Enti
 
 === Enable the Plugins 
 
-. Visit your https://gitlab-gitlab.{openshift_cluster_ingress_domain}/rhdh/developer-hub-config/-/edit/main/values.yaml[rhdh/developer-hub-config repository on GitLab^, window="gitlab"]. If prompted, login with `pe1` / `{common_password}`.
-. You should already be in Edit mode of the `values.yaml` file.
+include::../../partials/gitops-config-workflow.adoc[tag=edit-values]
 . Locate the comment `--- DYNAMIC_PLUGINS_IMPORT_COMPONENTS ---`
 . Highlight the YAML section shown in the below screenshot, and uncomment those lines. Use `CMD + /` or `CTRL + /` to do so.
 +
@@ -95,7 +87,9 @@ NOTE: This YAML snippet enables auto-discovery for all files named _all-location
 . Scroll down and enter a commit message `feat: Enable GitLab plugin and component auto discovery`.
 . Commit the file now using the *Commit Changes* button at the bottom of the page.
 
-. Refresh the https://openshift-gitops-server-openshift-gitops.{openshift_cluster_ingress_domain}[`backstage` Application, window="argo"] to rollout the new {product_name_rhdh} configuration - login as `admin` / `{openshift_gitops_password}`. Wait until the Application turns green and marked as Healthy. 
+. Refresh the https://openshift-gitops-server-openshift-gitops.{openshift_cluster_ingress_domain}[`backstage` Application, window="argo"] to rollout the new {product_name_rhdh} configuration.
+include::../../partials/login-argo.adoc[]
+Wait until the Application turns green and marked as Healthy. 
 
 
 == Onboard Parasol's System and Domain

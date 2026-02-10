@@ -1,0 +1,10 @@
+// Reusable partial for full Platform Engineer login instructions with collapsible
+// Usage: include::../partials/login-pe-full.adoc[]
+
+IMPORTANT: Please make sure to log in as a *Platform Engineer* with `pe1` / `{common_password}`. Refer to the below guide for assistance.
+
+.Click to learn how to login as a Platform Engineer
+[%collapsible]
+====
+include::../login-pe.adoc[]
+====

@@ -1,0 +1,4 @@
+// Reusable partial for inline dev1 login reminder
+// Usage: include::../partials/login-dev1.adoc[]
++
+When prompted, login as a Developer with `dev1` / `{common_password}`.

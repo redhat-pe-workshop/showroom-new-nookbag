@@ -33,8 +33,7 @@ The high-level steps involve:
 
 === Configure the OpenID Connect Authentication Provider
 
-. Visit your https://gitlab-gitlab.{openshift_cluster_ingress_domain}/rhdh/developer-hub-config/[rhdh/developer-hub-config repository on GitLab, window="gitlab"].
-. Open the *values.yaml* file, then select *Edit > Edit single file*.
+include::../../partials/gitops-config-workflow.adoc[tag=edit-values]
 . Locate the `appConfig.auth` object in the YAML. You can search for `--- AUTHENTICATION ---` in this file to locate this section.
 . Delete the existing `auth` configuration that contains the `guest` provider.
 . Uncomment the entire `auth` configuration containing the `oidc` provider, and the `signInPage` setting below it.
@@ -72,8 +71,8 @@ signInPage: oidc
 ** Map any signing in user identity to a User Entity in {product_name_rhdh} using the specified https://backstage.io/docs/auth/identity-resolver/[resolver^, window="console"]. These Users and Groups have already been synchronised to the catalog due to your work in the prior module.
 * The `signInPage` property is specific to {product_name_rhdh}. It ensures the correct sign-in UI is rendered. In upstream Backstage this requires React code changes.
 
-. Commit the changes with a message similar to `feat: enable openid connect`
-. Click Refresh on the https://openshift-gitops-server-openshift-gitops.{openshift_cluster_ingress_domain}/applications[`backstage` Application in OpenShift GitOps^, window="argo"]. If prompted, login as `admin/{openshift_gitops_password}`.
+. Scroll down and enter a commit message: `feat: enable openid connect`
+include::../../partials/gitops-config-workflow.adoc[tag=commit-and-sync]
 . Wait until the Application reports being in a *Healthy* state.
 
 === Login using OpenID Connect Authentication

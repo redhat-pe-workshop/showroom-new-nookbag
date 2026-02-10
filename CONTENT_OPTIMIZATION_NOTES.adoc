@@ -1,0 +1,420 @@
+= Workshop Content Optimization Analysis & Recommendations
+:toc:
+:toc-placement: preamble
+
+== Analysis Overview
+
+*Workshop*: Platform Engineering Workshop +
+*Current State*: 7 modules, 49 adoc files, ~3,300 lines, nearly full-day workshop +
+*Analysis Date*: 2026-02-03 +
+*Status*: High-quality content with uneven pacing - heavy educational content in Modules 6-7
+
+== Key Findings
+
+=== Strengths
+- Solid narrative arc (Parasol insurance company storyline)
+- Good hands-on activities in Modules 2-5
+- Comprehensive coverage of RHDH capabilities
+- Well-structured GitOps-based configuration approach
+
+=== Issues Identified
+1. *Module 1* is 100% narrative with zero hands-on activities
+2. *Module 6* (Supply Chain Security) is 7,458 words and 55% conceptual/educational
+3. *Module 7* (Continuous Improvement) is 4,869 words and 65% conceptual
+4. *Significant repetition* in GitOps workflows (~5 occurrences of same pattern)
+5. *Incomplete optional content* (module-06.3.1 is just a TODO placeholder)
+6. *Heavy concept introductions* that could link to external docs instead
+
+== Module Breakdown
+
+=== Module 1: Discovery (387 words)
+*Purpose*: Introduce problem statement and Platform Engineering concepts +
+*Key Activities*: Story-based introduction (Parasol insurance company), concept explanation +
+*Balance*: 100% educational/narrative - no hands-on activities +
+*Assessment*: Sets context well but is entirely theoretical
+
+=== Module 2: Design the Internal Developer Portal (2,336 words across 6 sections)
+*Purpose*: Install, configure, and bootstrap RHDH instance with integrations +
+*Key Activities*:
+
+- Access pre-deployed RHDH (2.2)
+- Configure app title via GitOps (2.3)
+- Enable Keycloak user/group sync (2.4)
+- Configure OpenID Connect authentication (2.5)
+- Register component catalogs (2.6)
+
+*Balance*: ~60% hands-on, 40% conceptual +
+*Assessment*: Good mix with heavy GitOps pattern repetition
+
+=== Module 3: Software Templates & Developer Experience (1,733 words across 7 sections)
+*Purpose*: Create and use Software Templates for golden paths +
+*Key Activities*:
+
+- Concept introduction with YAML structure walkthrough (3.1)
+- Hands-on template import (3.2)
+- Developer onboarding activity (3.3)
+- Account creation in Quay (3.3)
+- Template usage to create components (3.4-3.7)
+
+*Balance*: ~70% hands-on, 30% conceptual +
+*Assessment*: Strong practical focus with repetitive registration workflows
+
+=== Module 4: Accelerate Developer Inner-Loop (2,131 words across 5 sections)
+*Purpose*: Onboard existing applications and create ephemeral environments +
+*Key Activities*:
+
+- Architectural concepts explanation (4.1)
+- Platform engineer template setup (4.2)
+- Developer import workflows (4.3-4.5)
+
+*Balance*: ~65% hands-on, 35% conceptual +
+*Assessment*: Heavy on configuration pattern but critical for developer experience
+
+=== Module 5: Build, Test, & Deploy (Outer-Loop) (1,317 words across 3 sections)
+*Purpose*: Implement production CI/CD pipelines with approvals +
+*Key Activities*:
+
+- Merge request creation and pipeline triggering (5.1)
+- Manifest updates and production approvals (5.1)
+- GitOps deployment verification (5.1)
+
+*Balance*: ~80% hands-on, 20% conceptual +
+*Assessment*: Very practical but module overview is too brief
+
+=== Module 6: Software Supply Chain Security (7,458 words across 7 sections)
+*Purpose*: Add security guardrails without hampering productivity +
+*Key Activities*:
+
+- Supply chain security concepts (6.1) - EXTENSIVE
+- Dependency analytics explanation (6.2)
+- Optional: IDE plugin setup (6.2.1)
+- Container image scanning (6.3)
+- Optional: Artifact signing with cosign (6.3.1) - INCOMPLETE
+- Admission controllers (6.4-6.7)
+
+*Balance*: ~45% hands-on, 55% conceptual/educational +
+*Assessment*: MOST VERBOSE MODULE - Heavy on theory, has incomplete optional sections
+
+=== Module 7: Continuous Platform Improvements (4,869 words across 5 sections)
+*Purpose*: Ensure platform evolution and prevent drift/sprawl +
+*Key Activities*:
+
+- Platform evolution concepts (7.1) - VERY LENGTHY
+- Enable Adoption Insights plugin (7.2)
+- View adoption metrics (7.2)
+- Dynamic plugins framework (7.3)
+- Feedback loops discussion (7.4)
+
+*Balance*: ~35% hands-on, 65% conceptual +
+*Assessment*: Highly educational with limited practical activities
+
+== Balance Assessment by Module
+
+[cols="1,1,1,2", options="header"]
+|===
+|Module |Teaching % |Showing % |Assessment
+
+|M1 |100% |0% |Pure education, no demo
+|M2 |40% |60% |Good balance, heavy on GitOps mechanics
+|M3 |30% |70% |Strong demo focus, good pacing
+|M4 |35% |65% |Practical focus, complex onboarding
+|M5 |20% |80% |Excellent hands-on, brief overview
+|M6 |55% |45% |Over-educational, security concepts dominate
+|M7 |65% |35% |Over-educational, needs more practical demos
+|===
+
+*Total workshop*: ~48% teaching, 52% showing (reasonable but distribution is uneven)
+
+== Identified Repetitive Patterns
+
+=== 1. GitOps/Argo CD Configuration Loop (~5 occurrences)
+Pattern:
+
+- Edit values.yaml file in GitLab
+- Uncomment configuration block
+- Commit changes
+- Refresh Argo CD application
+- Wait for pod restart
+- Verify changes
+
+*Found in*: m2.3, m2.4, m2.5, m4.2, m7.2
+
+=== 2. Dynamic Plugin Enable Pattern (~4 occurrences)
+Pattern:
+
+- Locate comment marker in values.yaml
+- Uncomment plugin configuration
+- Commit changes
+- Refresh GitOps
+- Verify deployment
+
+*Found in*: m2.4, m2.5, m4.2, m7.2
+
+=== 3. Login/Account Creation Variations (~6 occurrences)
+Pattern:
+
+- Different logins for pe1, dev1, dev2
+- Quay account creation (m3.3)
+- SSO/OIDC setup (m2.5)
+- Repeated login instructions
+
+=== 4. Concept Introduction Pattern (~7 occurrences)
+Pattern:
+
+- Multi-paragraph explanation of concepts
+- Often with diagrams
+- Then transition to hands-on
+
+*Examples*: m2.1, m3.1, m4.1, m6.1, m7.1
+
+== Recommendations
+
+=== Quick Wins (20% content reduction, minimal impact)
+
+==== A. Merge Module 1 into Module 2
+*Current*: M1 is pure narrative (~400 words) +
+*Action*: Integrate Parasol story as 2-3 paragraphs at start of M2 +
+*Saves*: One entire module, faster start to hands-on
+
+==== B. Create Reusable Pattern References ⭐ IN PROGRESS
+*Current*: GitOps pattern repeated 5+ times +
+*Action*: Extract "GitOps Configuration Pattern" into a partial/include +
+*Reference from*: m2.3, m2.4, m2.5, m4.2, m7.2 +
+*Saves*: ~300-400 words, reduces cognitive load
+
+==== C. Consolidate Login Instructions ⭐ IN PROGRESS
+*Current*: Login instructions scattered across modules +
+*Action*: Create single "User Roles & Login" reference section, use includes +
+*Saves*: ~150 words, reduces repetition
+
+=== Medium Effort (30% content reduction, improves clarity)
+
+==== D. Significantly Reduce Module 6.1 (Supply Chain Concepts)
+*Current*: 435 words of supply chain security theory +
+*Recommendation*: Reduce to ~150 words with visual + link to NIST SSDF docs +
+*Rationale*: Workshop should *show* security capabilities, not *teach* security theory +
+*Saves*: ~285 words
+
+==== E. Compress Module 7.1 (Platform Evolution)
+*Current*: 1,393 words on platform drift/sprawl +
+*Recommendation*: Reduce to ~500 words focusing on *why RHDH solves this* +
+*Action*: Remove repetitive "multiple platforms" scenarios +
+*Saves*: ~800 words
+
+==== F. Fix or Remove Optional Content
+*Module 06.2.1-optional*: Move to external docs (nice-to-have, not essential) +
+*Module 06.3.1-optional*: Currently incomplete (TODO) - either finish or remove +
+*Action*: Decision needed on scope
+
+=== Strategic Refactoring (Best ROI for workshop goals)
+
+==== G. Restructure Module 6 (Supply Chain Security)
+*Current flow*: Heavy theory → Multiple disconnected activities +
+*Recommended*: Brief intro → Integrated workflow demonstration
+
+Suggested structure:
+
+- 6.0: Brief overview (100 words max)
+- 6.1: "Shift-Left Security in Action" (combine dependency scanning + image scanning)
+- 6.2: "Automated Signing & Verification" (streamline commit signing into pipeline)
+- 6.3: "Runtime Protection" (admission controllers as culmination)
+
+*Result*: 4 focused sections instead of 7, demonstrates integrated security workflow
+
+==== H. Restructure Module 7 (Continuous Improvement)
+*Current flow*: Heavy theory on platform evolution → Limited demos +
+*Recommended*: Quick context → Hands-on platform insights
+
+Suggested structure:
+
+- 7.0: Brief intro (150 words: why continuous improvement matters)
+- 7.1: "Measure Adoption" (hands-on with Adoption Insights plugin)
+- 7.2: "Extend with Dynamic Plugins" (practical plugin installation)
+- 7.3: "Developer Feedback Loops" (template feedback, docs contributions)
+
+*Result*: Shift from 65% educational to 30% educational, more practical value
+
+== Technical Assets & Environment Changes
+
+=== A. Pre-configure More Out-of-the-Box
+
+*Current state*: Modules 2-3 spend significant time on initial setup (SSO, user sync, basic plugins)
+
+*Recommendation*: Pre-configure the "baseline" RHDH instance with:
+
+- ✅ Keycloak integration already enabled
+- ✅ Basic user/group sync configured
+- ✅ OpenID Connect authentication working
+- ✅ Core plugins (GitLab, TechDocs, Kubernetes) already installed
+
+*New Module 2 focus*: "Customize Your Platform" instead of "Setup Your Platform"
+
+- Start with working portal
+- Focus on customization and extension
+- *Time saved*: ~30-45 minutes
+
+=== B. Simplify Security Module Setup
+
+*Current*: Extensive manual configuration in Module 6
+
+*Recommendation*: Pre-install Trusted Artifact Signer with:
+
+- Fulcio, Rekor, TUF endpoints already configured
+- Signing template already in catalog
+- Pipeline verification step template ready to use
+
+*New Module 6 focus*: Using security features, not configuring them +
+*Time saved*: ~20-30 minutes
+
+=== C. Create "Express Path" Alternatives
+
+Add optional "skip ahead" checkpoints:
+
+----
+Module 2: "Already familiar with RHDH basics? Skip to Module 3"
+Module 6: "Want to focus on developer experience? Security module is optional"
+----
+
+This allows:
+
+- Shorter workshops (4-5 hours instead of full day)
+- Flexible delivery for different audiences
+- Self-paced learning with clear markers
+
+=== D. Optimize Repository Structure
+
+*Current*: Many small template repositories
+
+*Recommendation*: Consider consolidating:
+
+- Create single "parasol-templates" repo with multiple templates
+- Reduce repo sprawl in GitLab
+- Easier to maintain and update
+- *Note*: This is optional, depends on demo preferences
+
+== Content Style Improvements
+
+=== A. Shift Balance: Show → Tell
+
+Pattern to adopt:
+
+❌ *Current (Module 6.1)*:
+----
+"Software Supply Chain Security refers to protecting the integrity..."
+[4 paragraphs of explanation]
+[Diagrams]
+"Now let's see this in action..."
+----
+
+✅ *Recommended*:
+----
+"Your pipeline is building containers, but are they secure? Let's find out."
+[Jump straight to scanning demo]
+[After demo: "This used RHACS, which implements SLSA framework. Learn more: [link]"]
+----
+
+*Rationale*: Workshop attendees want to *see possibilities*, not get security certification
+
+=== B. Use "Art of the Possible" Framing
+
+Change module introductions:
+
+- *From*: "In this module you'll learn about supply chain security..."
+- *To*: "What if developers could see vulnerabilities before they commit? Let's add that to your portal."
+
+Focus on *capabilities unlocked* rather than *concepts to learn*
+
+=== C. Move Theory to Reference Documentation
+
+Create companion reference docs with:
+
+- Deep dives into concepts
+- Architectural decisions explained
+- Best practices and production considerations
+
+Keep workshop focused on *demonstration and exploration*
+
+== Proposed New Structure (Leaner Version)
+
+NOTE: This is a future consideration, not currently being implemented
+
+----
+Module 1: Getting Started with RHDH (Merge old M1+M2.0-M2.2)
+  - Parasol story introduction (2-3 paragraphs)
+  - Access your pre-configured RHDH instance
+  - Quick tour of what's possible
+
+Module 2: Customize Your Developer Portal (M2.3-M2.6, streamlined)
+  - Configure catalog sources
+  - Enable dynamic plugins
+  - Customize appearance and docs
+
+Module 3: Golden Paths with Software Templates (Keep as-is, solid)
+  - Understand templates
+  - Import and use templates
+  - Developer onboarding workflow
+
+Module 4: Developer Inner & Outer Loops (Merge M4+M5)
+  - Import existing applications
+  - Setup ephemeral environments
+  - Push to production (complete workflow)
+
+Module 5: Secure Software Supply Chain (Refactored M6)
+  - Integrated security workflow demonstration
+  - Dependency scanning → Image scanning → Signing → Verification
+  - 4 sections instead of 7, focused on workflow
+
+Module 6: Platform Evolution & Insights (Refactored M7)
+  - Measure adoption with built-in insights
+  - Extend with dynamic plugins (hands-on)
+  - Create feedback loops
+
+Optional: Advanced Topics (Appendix)
+  - RBAC deep dive
+  - Custom plugin development
+  - Production deployment considerations
+----
+
+*Result*: 6 focused modules + optional content, 4-6 hour workshop depending on depth
+
+== Estimated Time Savings
+
+[cols="2,1,1", options="header"]
+|===
+|Change |Time Saved |Impact
+
+|Pre-configure baseline RHDH |30-45 min |High
+|Streamline M6 content |45-60 min |High
+|Compress M7 theory |30-40 min |High
+|Merge M4+M5 workflows |20-30 min |Medium
+|Consolidate repetitive patterns |15-20 min |Medium
+|Remove/fix optional sections |10-15 min |Low
+|*TOTAL* |*2.5-3.5 hours* |Transform from full-day to half-day+
+|===
+
+== Implementation Status
+
+=== Completed
+- [x] Analysis of workshop content
+- [x] Created content-revisions branch
+- [x] Saved recommendations to working notes
+
+=== In Progress
+- [ ] Quick Win 1.B: Create reusable GitOps configuration pattern partial
+- [ ] Quick Win 1.C: Consolidate login instructions
+
+=== Planned
+- [ ] Medium effort improvements (D, E, F)
+- [ ] Strategic refactoring (G, H)
+- [ ] Technical asset changes
+- [ ] Content style improvements
+
+== Next Steps
+
+After completing quick wins 1.B and 1.C:
+
+1. Review results with stakeholders
+2. Decide on medium effort improvements
+3. Consider strategic refactoring for Modules 6 & 7
+4. Evaluate technical asset pre-configuration opportunities
+5. Consider full module restructuring proposal

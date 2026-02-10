@@ -1,0 +1,4 @@
+// Reusable partial for inline PE1 login reminder
+// Usage: include::../partials/login-pe1.adoc[]
++
+When prompted, login as a Platform Engineer with `pe1` / `{common_password}`.

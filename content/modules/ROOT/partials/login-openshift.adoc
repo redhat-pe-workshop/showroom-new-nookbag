@@ -1,0 +1,4 @@
+// Reusable partial for OpenShift admin login reminder
+// Usage: include::../partials/login-openshift.adoc[]
++
+If needed, login as `admin` / `{common_password}`.

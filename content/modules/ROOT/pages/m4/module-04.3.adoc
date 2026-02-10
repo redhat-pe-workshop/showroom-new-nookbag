@@ -7,13 +7,7 @@ include::../style.adoc[]
 
 In this module, you will import an existing API and an existing application (Component) using the Software Templates that were setup by the Platform Engineer in the previous section.
 
-IMPORTANT: Please make sure to log in as a *Developer* with `dev1` / `{common_password}`.
-
-.Click here to view instructions to login as a Developer.
-[%collapsible]
-====
-include::../login-developer.adoc[]
-====
+include::../../partials/login-dev-full.adoc[]
 
 == Import Parasol Store OpenAPI 
 

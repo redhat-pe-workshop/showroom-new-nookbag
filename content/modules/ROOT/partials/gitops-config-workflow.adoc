@@ -1,0 +1,36 @@
+// Reusable partial for GitOps configuration workflow
+// Usage: include::../partials/gitops-config-workflow.adoc[tag=edit-values]
+// Usage: include::../partials/gitops-config-workflow.adoc[tag=commit-and-sync]
+// Usage: include::../partials/gitops-config-workflow.adoc[tag=verify-deployment]
+
+// tag::edit-values[]
+. Open your https://gitlab-gitlab.{openshift_cluster_ingress_domain}/rhdh/developer-hub-config/-/blob/main/values.yaml[values.yaml file in GitLab^, window="gitlab"].
+. Select *Edit > Edit single file*.
+include::login-pe1.adoc[]
+// end::edit-values[]
+
+// tag::uncomment-helper[]
++
+[NOTE]
+====
+If `CMD + /` or `CTRL + /` doesn't work, you can uncomment the lines by highlighting the appropriate code, choose the function *F1* from your keyboard, and select the option *Remove Line Comment* as shown below.
+
+image:m2/gitlab-f1-uncomment.png[Uncomment options in GitLab]
+====
+// end::uncomment-helper[]
+
+// tag::commit-and-sync[]
+. Scroll down and enter your commit message.
+. Click the *Commit changes* button.
+. Visit the https://openshift-gitops-server-openshift-gitops.{openshift_cluster_ingress_domain}/applications/openshift-gitops/backstage[backstage Application in OpenShift GitOps^, window="argo"] and click *Refresh*.
++
+include::login-argo.adoc[]
++
+NOTE: Argo CD has been setup to auto-sync every two minutes. Instead of having to wait for auto-sync to kick in, you are instructed to manually sync the Argo CD application.
+// end::commit-and-sync[]
+
+// tag::verify-deployment[]
+Your changes will start to rollout. Confirm this by visiting the https://console-openshift-console.{openshift_cluster_ingress_domain}/topology/ns/backstage?view=graph[backstage project^, window="console"] on OpenShift and checking that a new Pod is being started, or waiting until the Application in OpenShift GitOps reports *Healthy* instead of *Progressing*.
+
+image:m2/gitops-progressing.png[Backstage Application in Progressing Status]
+// end::verify-deployment[]

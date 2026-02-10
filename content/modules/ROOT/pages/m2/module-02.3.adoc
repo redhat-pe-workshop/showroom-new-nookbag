@@ -31,38 +31,29 @@ image:m2/gitops-sources.png[GitOps Sources for the Backstage Application]
 
 Let's verify that changes to the https://gitlab-gitlab.{openshift_cluster_ingress_domain}/rhdh/developer-hub-config/-/blob/main/values.yaml[values.yaml file in GitLab, window="gitlab"] actually get rolled out by OpenShift GitOps.
 
-. Open your https://gitlab-gitlab.{openshift_cluster_ingress_domain}/rhdh/developer-hub-config/-/blob/main/values.yaml[values.yaml file, window="gitlab"].
-. Select *Edit > Edit single file*. When prompted, login as a Platform Engineer with `pe1` / `{common_password}`
+include::../../partials/gitops-config-workflow.adoc[tag=edit-values]
 . Find the YAML surrounded by `--- APP TITLE ---` and uncomment it by highlighting it and pressing `CMD + /` or `CTRL + /`.
-+
-[NOTE]
-====
-If  `CMD + /` or `CTRL + /` doesn't work, you can uncomment the lines by highlighting the appropriate code, choose the function *F1* from your keyboard, and select the option *Remove Line Comment* as shown below.
-
-image:m2/gitlab-f1-uncomment.png[Uncomment options in GitLab]
-====
+include::../../partials/gitops-config-workflow.adoc[tag=uncomment-helper]
 . The file should now look like this after uncommenting:
 +
 image:m2/gitlab-change-app-title.png[Customizing the Title]
 . Scroll down and enter a commit message `feat: change application title`.
-. Click the *Commit changes* button.
+include::../../partials/gitops-config-workflow.adoc[tag=commit-and-sync]
 
 
 *Verify update to {product_name_rhdh}'s Custom Title*
 
 Let's ensure that a new deployment of {product_name_rhdh} is triggered and your new title is applied.
 
-. Return to the https://openshift-gitops-server-openshift-gitops.{openshift_cluster_ingress_domain}/applications/openshift-gitops/backstage[backstage Application in Argo CD, window="argo"]. Depending on your timing, it might already be progressing the latest sync, but if not, click the *Refresh* button. When the sync is in progress, you'll see a new Pod starting - this Pod will run the latest version of your configuration.
-+
-image:m2/rhdh-new-pod.png[{product_name_rhdh} with a Custom Title]
+include::../../partials/gitops-config-workflow.adoc[tag=verify-deployment]
 
-. Once the new Pod has started, visit your https://backstage-backstage.{openshift_cluster_ingress_domain}[{product_name_rhdh} instance, window="rhdh"]. You should see the new title *PE Developer Hub* in the page header.
-+
+Once the new Pod has started, visit your https://backstage-backstage.{openshift_cluster_ingress_domain}[{product_name_rhdh} instance, window="rhdh"]. You should see the new title *PE Developer Hub* in the page header.
+
 image:m2/rhdh-title.png[{product_name_rhdh} with a Custom Title]
 
 [NOTE]
 ====
-You may need to logout to see the title change. Click the Guest user icon in the top right corner and select *Sign out*. Then log back in to the https://backstage-backstage.{openshift_cluster_ingress_domain}[{product_name_rhdh} instance, window="rhdh"]  as a Platform Engineer with `pe1` / `{common_password}`.
+You may need to logout to see the title change. Click the Guest user icon in the top right corner and select *Sign out*. Then log back in to the https://backstage-backstage.{openshift_cluster_ingress_domain}[{product_name_rhdh} instance, window="rhdh"].
 
-image:m2/rhdh-title-logout.png[] 
+image:m2/rhdh-title-logout.png[]
 ====

@@ -1,0 +1,10 @@
+// Reusable partial for full Developer login instructions with collapsible
+// Usage: include::../partials/login-dev-full.adoc[]
+
+IMPORTANT: Please make sure you are logged in as a *Developer* with `dev1` / `{common_password}`.
+
+.Click here to view instructions to login as a Developer
+[%collapsible]
+====
+include::../login-developer.adoc[]
+====
